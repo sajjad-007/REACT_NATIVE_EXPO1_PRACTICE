@@ -3,7 +3,7 @@ import '../global.css';
 
 export default function Index() {
   return (
-    <View className="flex-1 items-center justify-center">
+    <View className="flex-1 bg-primary">
       <Text className="text-5xl text-bold">Welcome!</Text>
     </View>
   );
