@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "EXPO1",
-    "slug": "EXPO1",
+    "name": "Movie Corner",
+    "slug": "Moview Corner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
