@@ -2,11 +2,12 @@ export const TMDB_CONFIG = {
   BASE_URL: 'https://api.themoviedb.org/3',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer${process.env.EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${process.env.EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN}`,
   },
 };
+// Its important to give spaces between Bearer adn access token otherwise movie won't fetch
 
-const fetchMovies = async ({ query }: { query: string }) => {
+export const fetchMovies = async ({ query }: { query: string }) => {
   const endpoint = query
     ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
     : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
