@@ -1,6 +1,7 @@
 import { icons } from '@/constants/icons';
 import { images } from '@/constants/images';
 import { fetchMovies } from '@/services/api';
+import { storeUserSearch } from '@/services/appwrite';
 import useFetch from '@/services/useFetch';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native';
@@ -20,6 +21,9 @@ const Search = () => {
     const timer = setTimeout(async () => {
       if (searchQuery?.trim()) {
         await refetchMovies();
+        if (movieData?.length > 0 && movieData?.[0]) {
+          await storeUserSearch(searchQuery, movieData[0]);
+        }
       } else {
         reset();
       }
