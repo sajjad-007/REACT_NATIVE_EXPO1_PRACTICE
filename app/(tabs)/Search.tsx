@@ -21,15 +21,17 @@ const Search = () => {
     const timer = setTimeout(async () => {
       if (searchQuery?.trim()) {
         await refetchMovies();
-        if (movieData?.length > 0 && movieData?.[0]) {
-          await storeUserSearch(searchQuery, movieData[0]);
-        }
       } else {
         reset();
       }
     }, 500);
     return () => clearTimeout(timer);
   }, [searchQuery]);
+  useEffect(() => {
+    if (movieData?.length > 0 && movieData?.[0]) {
+      storeUserSearch(searchQuery, movieData[0]);
+    }
+  }, [movieData]);
   return (
     <View className="flex-1 bg-primary">
       <Image

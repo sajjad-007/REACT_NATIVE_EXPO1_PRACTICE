@@ -13,16 +13,16 @@ const tableDB = new TablesDB(client);
 
 export const storeUserSearch = async (query: string, movie: Movie) => {
   try {
+    //for read operation use (listRows)
     const response = await tableDB.listRows({
       databaseId: DATABASE_ID,
       tableId: TABLEROW_ID,
       queries: [Query.equal('searchTerm', query)],
     });
     // console.log('im here');
-    console.log(response);
+    // console.log(response);
     //check if a movie exist or not if exist then increment its count +1
     if (response.rows.length > 0) {
-      console.log('inside');
       const existingMovie = response.rows[0];
       await tableDB.updateRow(DATABASE_ID, TABLEROW_ID, existingMovie.$id, {
         count: existingMovie.count + 1,
@@ -41,5 +41,21 @@ export const storeUserSearch = async (query: string, movie: Movie) => {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+export const getTrendingMovies = async (): Promise<
+  TrendingMovie[] | undefined
+> => {
+  try {
+    const response = await tableDB.listRows({
+      databaseId: DATABASE_ID,
+      tableId: TABLEROW_ID,
+      queries: [Query.limit(6), Query.orderDesc('count')],
+    });
+    return response.rows as unknown as TrendingMovie[];
+  } catch (error) {
+    console.error('error from get all trending movies', error);
+    return undefined;
   }
 };
