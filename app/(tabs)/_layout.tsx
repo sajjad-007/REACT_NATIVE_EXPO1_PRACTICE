@@ -72,7 +72,7 @@ const _layout = () => {
         options={{
           title: 'Saved',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icons={icons.save} text={'Savedf'} />
+            <TabIcon focused={focused} icons={icons.save} text={'Saved'} />
           ),
         }}
       />

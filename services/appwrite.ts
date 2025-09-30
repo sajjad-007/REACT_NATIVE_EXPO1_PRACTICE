@@ -19,8 +19,6 @@ export const storeUserSearch = async (query: string, movie: Movie) => {
       tableId: TABLEROW_ID,
       queries: [Query.equal('searchTerm', query)],
     });
-    // console.log('im here');
-    // console.log(response);
     //check if a movie exist or not if exist then increment its count +1
     if (response.rows.length > 0) {
       const existingMovie = response.rows[0];
